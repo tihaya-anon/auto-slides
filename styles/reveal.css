@@ -1,0 +1,36 @@
+body {
+  background: #f6f3ea;
+  color: #1f2430;
+}
+
+.reveal {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-size: 34px;
+  line-height: 1.25;
+  color: #1f2430;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: #8f2d14;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.reveal a {
+  color: #0f766e;
+}
+
+.reveal .slide-number {
+  color: #6b7280;
+}
+
+.reveal pre code {
+  max-height: 520px;
+  font-size: 0.8em;
+}
