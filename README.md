@@ -53,6 +53,9 @@ Noto Serif CJK SC as the main serif font so English and Chinese text share a
 single stable LuaLaTeX font path.
 Code blocks use Maple Mono NF CN from `assets/fonts/`, so the website and PDF do
 not depend on Maple Mono being installed on the runner.
+The bundled Maple Mono font files are licensed under the SIL Open Font License
+1.1; keep `assets/fonts/OFL-MapleMono.txt` with the fonts when copying them into
+another repository. Upstream project: https://github.com/subframe7536/maple-font
 For GitHub Actions on Ubuntu runners, install the same font packages before
 `quarto render`.
 
@@ -76,6 +79,30 @@ directory as a static GitHub Pages artifact.
 Configure the repository under Settings -> Pages to use GitHub Actions as the
 source. The published site serves `handouts/pdf-notes.pdf` as a static file, so
 no PDF engine is needed at request time.
+
+## Sync to Course Repositories
+
+Use this repository as the Quarto infrastructure template, then sync it into a
+real course repository when the Actions, fonts, or styles change:
+
+```bash
+scripts/sync-template.sh ../my-course --dry-run
+scripts/sync-template.sh ../my-course
+```
+
+The default `infra` mode copies `.github/`, `.vscode/`, `styles/`,
+`assets/fonts/`, and `_quarto.yml`. It overwrites files with the same names but
+does not delete unrelated course material.
+
+For a brand-new repository, copy the whole template:
+
+```bash
+scripts/sync-template.sh ../new-course full
+```
+
+Use `full` mode only when the target is empty or disposable; it deletes files in
+the target that are not part of this template, except `.git/`, Quarto caches,
+and rendered site output.
 
 ## Why This Structure
 
