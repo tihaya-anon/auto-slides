@@ -12,8 +12,8 @@ format:
     colorlinks: true
 include-in-header:
   text: |
-    \addtokomafont{disposition}{\rmfamily}
-    \addtokomafont{title}{\rmfamily}
+    \addtokomafont{disposition}{\rmfamily\bfseries}
+    \addtokomafont{title}{\rmfamily\bfseries}
     \addtokomafont{author}{\rmfamily}
     \addtokomafont{date}{\rmfamily}
 ---
