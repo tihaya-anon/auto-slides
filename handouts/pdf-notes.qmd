@@ -14,11 +14,12 @@ format:
       - "Path=/usr/share/fonts/opentype/noto/"
       - "FontIndex=2"
       - "BoldFont=NotoSansCJK-Bold.ttc"
-    monofont: "NotoSansCJK-Regular.ttc"
+    monofont: "MapleMono-NF-CN-Regular.ttf"
     monofontoptions:
-      - "Path=/usr/share/fonts/opentype/noto/"
-      - "FontIndex=7"
-      - "BoldFont=NotoSansCJK-Bold.ttc"
+      - "Path=../assets/fonts/"
+      - "BoldFont=MapleMono-NF-CN-Bold.ttf"
+      - "ItalicFont=MapleMono-NF-CN-Italic.ttf"
+      - "BoldItalicFont=MapleMono-NF-CN-BoldItalic.ttf"
     toc: true
     number-sections: true
     colorlinks: true

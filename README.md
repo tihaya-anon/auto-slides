@@ -51,6 +51,8 @@ sudo apt-get install -y fonts-noto-core fonts-noto-cjk fonts-noto-mono
 The HTML and reveal.js outputs use a sans-serif font stack. The PDF handout uses
 Noto Serif CJK SC as the main serif font so English and Chinese text share a
 single stable LuaLaTeX font path.
+Code blocks use Maple Mono NF CN from `assets/fonts/`, so the website and PDF do
+not depend on Maple Mono being installed on the runner.
 For GitHub Actions on Ubuntu runners, install the same font packages before
 `quarto render`.
 
