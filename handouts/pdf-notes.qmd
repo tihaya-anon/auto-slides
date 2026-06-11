@@ -4,9 +4,21 @@ subtitle: "Printable quant handout"
 format:
   pdf:
     pdf-engine: lualatex
-    mainfont: "Noto Serif CJK SC"
-    sansfont: "Noto Sans CJK SC"
-    monofont: "Noto Sans Mono"
+    mainfont: "NotoSerifCJK-Regular.ttc"
+    mainfontoptions:
+      - "Path=/usr/share/fonts/opentype/noto/"
+      - "FontIndex=2"
+      - "BoldFont=NotoSerifCJK-Bold.ttc"
+    sansfont: "NotoSansCJK-Regular.ttc"
+    sansfontoptions:
+      - "Path=/usr/share/fonts/opentype/noto/"
+      - "FontIndex=2"
+      - "BoldFont=NotoSansCJK-Bold.ttc"
+    monofont: "NotoSansCJK-Regular.ttc"
+    monofontoptions:
+      - "Path=/usr/share/fonts/opentype/noto/"
+      - "FontIndex=7"
+      - "BoldFont=NotoSansCJK-Bold.ttc"
     toc: true
     number-sections: true
     colorlinks: true
