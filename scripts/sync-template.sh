@@ -3,16 +3,17 @@ set -euo pipefail
 
 usage() {
   cat <<'USAGE'
-Usage: scripts/sync-template.sh <target-dir> [infra|full] [--dry-run]
+Usage: scripts/sync-template.sh <target-dir> [infra|full] [--dry-run] [--overwrite-quarto-config]
 
 Modes:
   infra  Sync reusable Quarto infrastructure only:
-         .github/, .vscode/, styles/, assets/fonts/, _quarto.yml
+         .github/, .vscode/, styles/, assets/fonts/, and _quarto.yml when missing.
   full   Sync this whole template, excluding .git, render caches, and outputs.
 
 Examples:
   scripts/sync-template.sh ../my-course --dry-run
   scripts/sync-template.sh ../my-course
+  scripts/sync-template.sh ../my-course --overwrite-quarto-config
   scripts/sync-template.sh ../new-course full
 USAGE
 }
@@ -27,6 +28,7 @@ command -v rsync >/dev/null 2>&1 || die "rsync is required"
 mode="infra"
 target_input=""
 dry_run=()
+overwrite_quarto_config=0
 
 for arg in "$@"; do
   case "$arg" in
@@ -36,6 +38,9 @@ for arg in "$@"; do
       ;;
     --dry-run)
       dry_run=(--dry-run)
+      ;;
+    --overwrite-quarto-config)
+      overwrite_quarto_config=1
       ;;
     infra|full)
       mode="$arg"
@@ -89,7 +94,11 @@ case "$mode" in
     sync_dir ".vscode"
     sync_dir "styles"
     sync_dir "assets/fonts"
-    sync_file "_quarto.yml"
+    if [[ -e "$target_root/_quarto.yml" && "$overwrite_quarto_config" -eq 0 ]]; then
+      printf 'Skipped existing _quarto.yml; pass --overwrite-quarto-config to replace it.\n'
+    else
+      sync_file "_quarto.yml"
+    fi
     ;;
   full)
     rsync -a --delete "${dry_run[@]}" \

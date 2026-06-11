@@ -90,9 +90,17 @@ scripts/sync-template.sh ../my-course --dry-run
 scripts/sync-template.sh ../my-course
 ```
 
-The default `infra` mode copies `.github/`, `.vscode/`, `styles/`,
-`assets/fonts/`, and `_quarto.yml`. It overwrites files with the same names but
-does not delete unrelated course material.
+The default `infra` mode copies `.github/`, `.vscode/`, `styles/`, and
+`assets/fonts/`. It copies `_quarto.yml` only when the target does not already
+have one, so course-specific titles and navigation are preserved. To replace the
+target Quarto config too, run:
+
+```bash
+scripts/sync-template.sh ../my-course --overwrite-quarto-config
+```
+
+It overwrites synced files with the same names but does not delete unrelated
+course material.
 
 For a brand-new repository, copy the whole template:
 
