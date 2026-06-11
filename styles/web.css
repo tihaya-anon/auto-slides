@@ -1,5 +1,28 @@
 body {
+  font-family:
+    "Noto Sans",
+    "Noto Sans CJK SC",
+    "Source Han Sans SC",
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Segoe UI",
+    Arial,
+    sans-serif;
   line-height: 1.65;
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family:
+    "Noto Sans Mono",
+    "Noto Sans Mono CJK SC",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
 }
 
 .navbar {
@@ -7,7 +30,7 @@ body {
 }
 
 .quarto-title-block .title {
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
 }
 
 img {

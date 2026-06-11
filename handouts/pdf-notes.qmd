@@ -3,10 +3,19 @@ title: "Lecture 01 PDF Notes"
 subtitle: "Printable quant handout"
 format:
   pdf:
-    pdf-engine: tectonic
+    pdf-engine: lualatex
+    mainfont: "Noto Serif CJK SC"
+    sansfont: "Noto Sans CJK SC"
+    monofont: "Noto Sans Mono"
     toc: true
     number-sections: true
     colorlinks: true
+include-in-header:
+  text: |
+    \addtokomafont{disposition}{\rmfamily}
+    \addtokomafont{title}{\rmfamily}
+    \addtokomafont{author}{\rmfamily}
+    \addtokomafont{date}{\rmfamily}
 ---
 
 # Role Of The PDF

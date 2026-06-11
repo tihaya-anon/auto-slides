@@ -4,7 +4,17 @@ body {
 }
 
 .reveal {
-  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  font-family:
+    "Noto Sans",
+    "Noto Sans CJK SC",
+    "Source Han Sans SC",
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Avenir Next",
+    "Segoe UI",
+    Arial,
+    sans-serif;
   font-size: 34px;
   line-height: 1.25;
   color: #1f2430;
@@ -18,7 +28,7 @@ body {
 .reveal h2,
 .reveal h3 {
   color: #8f2d14;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-transform: none;
 }
 
@@ -31,6 +41,13 @@ body {
 }
 
 .reveal pre code {
+  font-family:
+    "Noto Sans Mono",
+    "Noto Sans Mono CJK SC",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
   max-height: 520px;
   font-size: 0.8em;
 }

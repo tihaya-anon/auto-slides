@@ -8,6 +8,73 @@ This directory contains a minimal Quarto stack for quant course material.
 - `handouts/web-notes.qmd`: HTML handout for web publishing
 - `handouts/pdf-notes.qmd`: PDF handout for printing or offline reading
 
+## Local Setup
+
+Install Quarto first. On Ubuntu/Debian, download the latest `.deb` installer
+from the Quarto download page, then install it:
+
+https://quarto.org/docs/download/
+
+```bash
+sudo apt install ./quarto-*-linux-amd64.deb
+quarto --version
+```
+
+Install TinyTeX for PDF rendering:
+
+```bash
+quarto install tinytex
+```
+
+Do not run this command with `sudo`. Quarto installs TinyTeX as a Quarto-managed
+tool for the current user; running it as root can put the tool in root's Quarto
+directory and can also drop proxy or GitHub credentials from your environment.
+
+If TinyTeX install fails with `403 - Forbidden`, your anonymous GitHub API quota
+is likely exhausted. Authenticate GitHub CLI and expose its token only for the
+current shell:
+
+```bash
+gh auth login -h github.com
+export GH_TOKEN="$(gh auth token)"
+quarto install tinytex
+```
+
+Install Noto fonts so English and Simplified Chinese render consistently in
+HTML, reveal.js slides, and PDF output:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y fonts-noto-core fonts-noto-cjk fonts-noto-mono
+```
+
+The HTML and reveal.js outputs use a sans-serif font stack. The PDF handout uses
+Noto Serif CJK SC as the main serif font so English and Chinese text share a
+single stable LuaLaTeX font path.
+For GitHub Actions on Ubuntu runners, install the same font packages before
+`quarto render`.
+
+If TinyTeX setup happens in GitHub Actions, pass the workflow token to avoid
+anonymous GitHub API rate limits:
+
+```yaml
+- uses: quarto-dev/quarto-actions/setup@v2
+  env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    tinytex: true
+```
+
+## GitHub Pages
+
+The workflow in `.github/workflows/publish.yml` renders the entire Quarto project
+in CI, including `handouts/pdf-notes.qmd`, then deploys the generated `_site/`
+directory as a static GitHub Pages artifact.
+
+Configure the repository under Settings -> Pages to use GitHub Actions as the
+source. The published site serves `handouts/pdf-notes.pdf` as a static file, so
+no PDF engine is needed at request time.
+
 ## Why This Structure
 
 The video deck and the reading material should not be the same artifact.
